@@ -1,8 +1,21 @@
 c-skills
 ========
-Checkout the various branches for some interesting quizes.
+Implement the function
 
-"I have truly remarkable solutions for these problems which this margin is too small to contain."
+  void randomize_array(int *array, int size);
 
- -- Pierre de Fermat, more or less...
+in random.c, which receives a sorted 'array' of size 'size' with values:
+
+  array[0]      = 1
+  array[1]      = 2
+  ...
+  array[size-1] = size
+
+You must randomize the values within the array in a uniform distribution.
+You may use the function
+
+  int randomize_range(int max);
+
+declared in random.h which receives an integer value and returns a random
+value within the range [1, max].
 
