@@ -1,8 +1,14 @@
 c-skills
 ========
-Checkout the various branches for some interesting quizes.
+Provide input to the 'naive' application, such that it will spawn a new shell.
 
-"I have truly remarkable solutions for these problems which this margin is too small to contain."
+In order to provide as input the actual byte array of your solution and not the
+ascii representations of each character, you can pass the input as follows:
 
- -- Pierre de Fermat, more or less...
+  - ./naive `./shellcode.sh`
+
+Where shellcode.sh is created, for example, by:
+
+  - echo printf \"Hello-World\" > shellcode.sh
+  - chmod 755 shellcode.sh
 
