@@ -21,11 +21,6 @@ int main(int argc, char **argv)
 	for (t = tests; t->str; t++) {
 		int val = check_brackets(t->str);
 
-		if (val != 0 && val != -1) {
-			printf("check_brackets() not implemented\n");
-			return 0;
-		}
-
 		printf("check_brackets(\"%s\") -> %s (%s)\n", t->str,
 			val ? "false" : "true",
 			val == t->val ? "CORRECT": "WRONG");
