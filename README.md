@@ -1,8 +1,8 @@
 c-skills
 ========
-Checkout the various branches for some interesting quizes.
+A demo repository for testing your c programming skills
 
-"I have truly remarkable solutions for these problems which this margin is too small to contain."
+What does the following macro do?
 
- -- Pierre de Fermat, more or less...
+    #define f(x) (((x) & ~((x) - 1)) - 1)
 
