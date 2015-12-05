@@ -1,0 +1,121 @@
+.\" process with:
+.\" groff -man -Tascii sys_malloc.3 | less
+.TH SYS_MALLOC 3  2010-01-17
+.SH NAME
+sys_malloc, sys_free \- Allocate and free dynamic memory
+.nf
+sys_malloc_small, sys_free_small \- Allocate and free dynamic memory for sizes up to 255 bytes
+.nf
+sys_malloc_large, sys_free_large \- Allocate and free dynamic memory for sizes greater than 255 bytes
+.SH SYNOPSIS
+.nf
+.B #include <sys.h>
+.sp
+.BI "void *sys_malloc(unsigned int " "size" );
+.br
+.BI "void sys_free(void " "*ptr" ", unsigned int " "size");
+.br
+.sp
+.BI "void *sys_malloc_small(unsigned int " "size" );
+.br
+.BI "void sys_free_small(void " "*ptr" ", unsigned int " "size");
+.br
+.sp
+.BI "void *sys_malloc_large(unsigned int " "size" );
+.br
+.BI "void sys_free_large(void " "*ptr" ", unsigned int " "size");
+.fi
+.sp
+Link with \fI\-lsys\fP.
+.sp
+.in -4n
+.SH DESCRIPTION
+.BR sys_malloc ()
+allocates
+.I size
+bytes and returns a pointer to the allocated memory.
+The memory is not cleared.
+If
+.I size
+is 0, then
+.BR sys_malloc ()
+returns 
+.\" glibc does this:
+a unique pointer value that can later be successfully passed to
+.BR sys_free ().
+.PP
+.BR sys_malloc_small ()
+is similar to
+.BR sys_malloc ()
+but
+.IR size
+must be between 0 and 255 bytes.
+.BR sys_malloc_large ()
+is similar to
+.BR sys_malloc ()
+but
+.IR size
+must be greater than 255 bytes.
+.PP
+.BR sys_free ()
+frees 
+.IR size 
+bytes of memory space pointed to by
+.IR ptr ,
+which must have been returned by a previous call to
+.BR sys_malloc ().
+Otherwise, or if
+.BR sys_free()
+has already been called before, 
+.BR sys_free()
+genertes an error message and protects against memory corruption.
+If
+.I ptr
+is 0x0, an error message is generated and no operation is performed.
+.PP
+.BR sys_free_small ()
+is similar to
+.BR sys_free ()
+but
+.IR ptr
+must have been allocated by
+.BR sys_malloc_small ().
+.br
+.BR sys_free_large ()
+is similar to
+.BR sys_free ()
+but
+.IR ptr
+must have been allocated by
+.BR sys_malloc_large ().
+.PP
+.SH "RETURN VALUE"
+.BR sys_malloc (),
+.BR sys_malloc_small ()
+and 
+.BR sys_malloc_large ()
+return a pointer to the allocated memory, which is suitably
+aligned for any kind of variable.
+On error, this function returns 0x0.
+.PP
+.BR sys_free (),
+.BR sys_free_small ()
+and
+.BR sys_free_large ()
+return no value.
+.SH NOTES
+Heap corruption, such as overflowing an allocated chunk or freeing the same 
+pointer twice in 
+.BR sys_malloc (),
+and
+.BR sys_free ()
+are prevented, system error messages are written to stderr.
+.PP
+.SH "SEE ALSO"
+.BR calloc (3),
+.BR malloc (3),
+.BR free (3),
+.BR realloc (3)
+.SH "AUTHOR"
+.LP 
+Ilan A. Smith <lunnys@gmail.com>
