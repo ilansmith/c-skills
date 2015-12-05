@@ -1,8 +1,5 @@
 c-skills
 ========
-Checkout the various branches for some interesting quizes.
-
-"I have truly remarkable solutions for these problems which this margin is too small to contain."
-
- -- Pierre de Fermat, more or less...
+What do you expect the output of the code in dots.c to be?
+Provide a full explanation of what happens.
 
