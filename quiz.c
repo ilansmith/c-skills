@@ -1,0 +1,29 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+void g(void)
+{
+	printf("In g()!\n");
+	exit(0);
+}
+
+void f(char *src)
+{
+	char dst[4];
+
+	strcpy(dst, src);
+	dst[3] = '\0';
+	printf("dst: %s\n", dst);
+}
+
+int main(int argc, char *argv[])
+{
+	char buf[40] = { 'a', 'b', 'c', '\0' };
+
+	/* Insert your code here */
+
+	f(buf);
+	return 0;
+}
+
